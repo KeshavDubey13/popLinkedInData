@@ -1,0 +1,13 @@
+{
+    "name":"Data",
+    "version":"1.0",
+    "manifest_version":3,
+
+    "action":{
+        "default_popup":"popUp.html"
+    },
+
+    
+    "permissions":["activeTab", "scripting"]
+    
+}
