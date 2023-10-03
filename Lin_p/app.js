@@ -1,4 +1,7 @@
 const fetchDataShow = document.getElementById("Data")
+const copyData = document.getElementById("copy")
+
+copyData.style.display="none"
 
 const fun = () => {
     var clas = document.getElementsByClassName("artdeco-card ember-view relative break-words pb3 mt2")
@@ -90,7 +93,7 @@ const fun = () => {
     var newArray = [];
 
     for (let index = 0; index < Experience_Remove_Dupliicate.length; index++) {
-        newArray.push({ Role: Experience_Remove_Dupliicate[index][0], Company: Experience_Remove_Dupliicate[index][1], Duraion: Experience_Remove_Dupliicate[index][2] })
+        newArray.push({ Role: Experience_Remove_Dupliicate[index][0], Company: Experience_Remove_Dupliicate[index][1], Duration: Experience_Remove_Dupliicate[index][2] })
     }
 
     var pepoleJson = {
@@ -115,7 +118,14 @@ setTimeout( async()=>{
     },
     async(injectionResults)=>{
         const [data] = injectionResults
-        fetchDataShow.innerText=data.result
+        if (data.result) {
+            fetchDataShow.innerText=data.result
+            copyData.style.display="unset"
+
+        }
+        else{
+            fetchDataShow.innerText="Sorry No data Found"
+        }
 
     }
     
@@ -123,6 +133,14 @@ setTimeout( async()=>{
 
 
 },1000)
+
+
+
+copyData.addEventListener("click",async()=>{
+   const data = fetchDataShow;
+   await navigator.clipboard.writeText(data.innerText)
+})
+
 
 
 
